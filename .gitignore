@@ -1,16 +1,24 @@
-workspace.xml
-junitvmwatcher*.properties
-build.properties
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
 
-# generated java classes and java source files
-#   manually add any custom artifacts that can't be generated from the models
-#   http://confluence.jetbrains.com/display/MPSD25/HowTo+--+MPS+and+Git
-classes_gen
-source_gen
-source_gen.caches
+node_modules
+dist
+dist-ssr
+*.local
 
-# generated test code and test results
-test_gen
-test_gen.caches
-TEST-*.xml
-junit*.properties
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
