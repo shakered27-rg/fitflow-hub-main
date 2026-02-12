@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Notifications - FitnessTracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="workouts.html" class="nav-item">
+                <span class="nav-icon">🏋️</span>
+                <span class="nav-label">Workouts</span>
+            </a>
+            <a href="goals.html" class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Goals</span>
+            </a>
+            <a href="notifications.html" class="nav-item active">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-label">Notifications</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Profile</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>🔔 Notifications</h1>
+                <button class="add-btn" onclick="markAllAsRead()">
+                    <span>✓</span> Mark All Read
+                </button>
+            </div>
+
+            <!-- Notifications List -->
+            <div id="notifications-list" class="notifications-list">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+
+            <!-- Notification Settings -->
+            <div class="settings-section">
+                <h2>⚙️ Notification Settings</h2>
+                <div class="settings-card">
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Enable Notifications</h3>
+                            <p>Receive workout reminders and goal updates</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="notifications-enabled" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Reminder Schedule</h3>
+                            <p>How often to receive workout reminders</p>
+                        </div>
+                        <select id="reminder-schedule" class="setting-select" style="padding: 8px 16px; border: 2px solid var(--border-color); border-radius: var(--border-radius-sm); background: var(--bg-white); color: var(--text-dark);">
+                            <option value="daily">Daily</option>
+                            <option value="weekly">Weekly</option>
+                            <option value="custom">Custom</option>
+                        </select>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Workout Reminders</h3>
+                            <p>Get reminded to complete your daily workout</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="workout-reminders" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <div class="setting-item">
+                        <div class="setting-info">
+                            <h3>Goal Progress</h3>
+                            <p>Get updates on your goal achievements</p>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" id="goal-reminders" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+
+                    <button class="save-settings-btn" onclick="saveNotificationSettings()" style="width: 100%; padding: 14px; margin-top: 16px; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 600;">
+                        Save Settings
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/notifications.js"></script>
+</body>
+</html>

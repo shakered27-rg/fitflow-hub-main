@@ -1,0 +1,15 @@
+{
+  "liveServer.settings.port": 5501,
+  "liveServer.settings.root": "/",
+  "liveServer.settings.openBrowser": true,
+  "files.autoSave": "afterDelay",
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.fontSize": 14,
+  "editor.tabSize": 2,
+  "workbench.colorTheme": "Default Dark+",
+  "emmet.includeLanguages": {
+    "javascript": "javascript",
+    "html": "html"
+  }
+}

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Dashboard - FitnessTracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item active">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="workouts.html" class="nav-item">
+                <span class="nav-icon">🏋️</span>
+                <span class="nav-label">Workouts</span>
+            </a>
+            <a href="goals.html" class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Goals</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-label">Notifications</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Profile</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="dashboard-header">
+                <div>
+                    <h1>Welcome back, <span id="user-name">User</span>! 👋</h1>
+                    <p id="current-date"></p>
+                </div>
+                <button id="theme-toggle" class="theme-toggle">
+                    <span>🌙</span> Dark Mode
+                </button>
+            </div>
+
+            <!-- Stats Grid -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">🏋️</div>
+                    <div class="stat-info">
+                        <h3>Total Workouts</h3>
+                        <p class="stat-value" id="total-workouts">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">📅</div>
+                    <div class="stat-info">
+                        <h3>This Week</h3>
+                        <p class="stat-value" id="weekly-workouts">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔥</div>
+                    <div class="stat-info">
+                        <h3>Calories</h3>
+                        <p class="stat-value" id="calories-burned">0</p>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎯</div>
+                    <div class="stat-info">
+                        <h3>Goals</h3>
+                        <p class="stat-value" id="completed-goals">0</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Dashboard Grid -->
+            <div class="dashboard-grid">
+                <div class="chart-card">
+                    <h2>📊 Weekly Activity</h2>
+                    <canvas id="workoutChart"></canvas>
+                </div>
+
+                <div class="quick-actions-card">
+                    <h2>⚡ Quick Actions</h2>
+                    <div class="action-buttons">
+                        <a href="workouts.html" class="action-btn">
+                            <span class="action-icon">➕</span>
+                            Add Workout
+                        </a>
+                        <a href="goals.html" class="action-btn">
+                            <span class="action-icon">🎯</span>
+                            Add Goal
+                        </a>
+                        <a href="profile.html" class="action-btn">
+                            <span class="action-icon">👤</span>
+                            Update Profile
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Workouts -->
+            <div class="recent-section">
+                <h2>🏃 Recent Workouts</h2>
+                <div id="recent-workouts" class="recent-list">
+                    <!-- Dynamic content will be inserted here -->
+                </div>
+            </div>
+
+            <!-- Admin Section (Hidden for regular users) -->
+            <div id="admin-section" class="admin-section" style="display: none;">
+                <h2>👑 Admin Controls</h2>
+                <p>Manage users, view statistics, and configure app settings</p>
+                <a href="admin.html" class="admin-btn">Go to Admin Dashboard →</a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

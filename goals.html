@@ -1,0 +1,109 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Goals - FitnessTracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="workouts.html" class="nav-item">
+                <span class="nav-icon">🏋️</span>
+                <span class="nav-label">Workouts</span>
+            </a>
+            <a href="goals.html" class="nav-item active">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Goals</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-label">Notifications</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Profile</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>🎯 Fitness Goals</h1>
+                <button class="add-btn" onclick="openGoalModal()">
+                    <span>➕</span> Create Goal
+                </button>
+            </div>
+
+            <!-- Goals Grid -->
+            <div id="goals-grid" class="goals-grid">
+                <!-- Dynamic content will be inserted here -->
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Goal Modal -->
+    <div id="goal-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="goal-modal-title">Create New Goal</h2>
+                <button class="close-btn" onclick="closeGoalModal()">&times;</button>
+            </div>
+            <form id="goal-form">
+                <div class="form-group">
+                    <label>Goal Title</label>
+                    <input type="text" id="goal-title" required placeholder="e.g., Run 50km this month">
+                </div>
+
+                <div class="form-group">
+                    <label>Description</label>
+                    <textarea id="goal-description" rows="3" placeholder="Describe your goal..."></textarea>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label>Target Value</label>
+                        <input type="number" id="goal-target" required min="1" placeholder="50">
+                    </div>
+                    <div class="form-group">
+                        <label>Unit</label>
+                        <select id="goal-unit">
+                            <option value="workouts">🏋️ Workouts</option>
+                            <option value="minutes">⏱️ Minutes</option>
+                            <option value="km">📍 Distance (km)</option>
+                            <option value="kg">⚖️ Weight (kg)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Deadline</label>
+                    <input type="date" id="goal-deadline" required>
+                </div>
+
+                <div class="form-actions" style="display: flex; gap: 16px; margin-top: 24px;">
+                    <button type="submit" class="submit-btn" id="submit-goal" style="flex: 2; padding: 12px; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius-sm); cursor: pointer;">Create Goal</button>
+                    <button type="button" class="cancel-btn" onclick="closeGoalModal()" style="flex: 1; padding: 12px; background: var(--bg-light); color: var(--text-dark); border: none; border-radius: var(--border-radius-sm); cursor: pointer;">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/goals.js"></script>
+</body>
+</html> 

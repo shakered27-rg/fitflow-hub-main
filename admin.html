@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Admin Dashboard - FitnessTracker</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Bottom Navigation -->
+        <nav class="bottom-nav">
+            <a href="dashboard.html" class="nav-item">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+            </a>
+            <a href="workouts.html" class="nav-item">
+                <span class="nav-icon">🏋️</span>
+                <span class="nav-label">Workouts</span>
+            </a>
+            <a href="goals.html" class="nav-item">
+                <span class="nav-icon">🎯</span>
+                <span class="nav-label">Goals</span>
+            </a>
+            <a href="notifications.html" class="nav-item">
+                <span class="nav-icon">🔔</span>
+                <span class="nav-label">Notifications</span>
+            </a>
+            <a href="profile.html" class="nav-item">
+                <span class="nav-icon">👤</span>
+                <span class="nav-label">Profile</span>
+            </a>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <div class="page-header">
+                <h1>👑 Admin Dashboard</h1>
+                <button class="add-btn" onclick="switchToUserView()">
+                    <span>👤</span> Switch to User View
+                </button>
+            </div>
+
+            <!-- View Toggle -->
+            <div class="view-toggle">
+                <button class="view-btn active" onclick="switchView('admin')">Admin View</button>
+                <button class="view-btn" onclick="switchView('user')">User View</button>
+            </div>
+
+            <!-- Admin Stats -->
+            <div class="admin-stats-grid">
+                <div class="admin-stat-card">
+                    <h3 style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Total Users</h3>
+                    <p style="font-size: 36px; font-weight: 700;" id="total-users">0</p>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 8px;">Registered users</p>
+                </div>
+                <div class="admin-stat-card">
+                    <h3 style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Total Workouts</h3>
+                    <p style="font-size: 36px; font-weight: 700;" id="total-workouts-admin">0</p>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 8px;">All time</p>
+                </div>
+                <div class="admin-stat-card">
+                    <h3 style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Active Goals</h3>
+                    <p style="font-size: 36px; font-weight: 700;" id="active-goals">0</p>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 8px;">In progress</p>
+                </div>
+                <div class="admin-stat-card">
+                    <h3 style="font-size: 14px; opacity: 0.9; margin-bottom: 8px;">Completion Rate</h3>
+                    <p style="font-size: 36px; font-weight: 700;" id="completion-rate">0%</p>
+                    <p style="font-size: 12px; opacity: 0.8; margin-top: 8px;">Goals achieved</p>
+                </div>
+            </div>
+
+            <!-- Users Management -->
+            <div style="background: var(--bg-white); border-radius: var(--border-radius); padding: 24px; margin-bottom: 24px;">
+                <h2 style="margin-bottom: 20px;">👥 User Management</h2>
+                <div style="overflow-x: auto;">
+                    <table style="width: 100%; border-collapse: collapse;">
+                        <thead>
+                            <tr style="border-bottom: 2px solid var(--border-color);">
+                                <th style="text-align: left; padding: 12px;">User</th>
+                                <th style="text-align: left; padding: 12px;">Email</th>
+                                <th style="text-align: left; padding: 12px;">Joined</th>
+                                <th style="text-align: left; padding: 12px;">Status</th>
+                                <th style="text-align: left; padding: 12px;">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-list">
+                            <!-- Dynamic content will be inserted here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- App Statistics -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 24px;">
+                <div style="background: var(--bg-white); border-radius: var(--border-radius); padding: 24px;">
+                    <h3 style="margin-bottom: 16px;">📊 Workout Categories</h3>
+                    <canvas id="categoryChart"></canvas>
+                </div>
+                <div style="background: var(--bg-white); border-radius: var(--border-radius); padding: 24px;">
+                    <h3 style="margin-bottom: 16px;">📈 User Growth</h3>
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <!-- App Settings -->
+            <div style="background: var(--bg-white); border-radius: var(--border-radius); padding: 24px;">
+                <h2 style="margin-bottom: 20px;">⚙️ App Settings</h2>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Maintenance Mode</h3>
+                        <p>Temporarily disable user access</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="maintenance-mode">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Allow New Registrations</h3>
+                        <p>Enable/disable user signups</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="allow-registrations" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                <div class="setting-item">
+                    <div class="setting-info">
+                        <h3>Default Fitness Level</h3>
+                        <p>Set default level for new users</p>
+                    </div>
+                    <select id="default-fitness" style="padding: 8px 16px; border: 2px solid var(--border-color); border-radius: var(--border-radius-sm); background: var(--bg-white); color: var(--text-dark);">
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
+                </div>
+                <button onclick="saveAdminSettings()" style="width: 100%; padding: 14px; margin-top: 24px; background: var(--primary-color); color: white; border: none; border-radius: var(--border-radius-sm); cursor: pointer; font-weight: 600;">
+                    Save Settings
+                </button>
+            </div>
+        </main>
+    </div>
+
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.0/firebase-firestore-compat.js"></script>
+    
+    <!-- App Scripts -->
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/admin.js"></script>
+</body>
+</html>
